@@ -1,12 +1,18 @@
+using Test
+
 # Load the module and generate the functions
 module CppHello
-  using CxxWrap
-  @wrapmodule(()->joinpath(".","libhello.so"))
+using Libdl: dlext
 
-  function __init__()
+using CxxWrap
+@wrapmodule(() -> joinpath(".", "libhello.$(dlext)"))
+
+function __init__()
     @initcxx
-  end
+end
 end
 
-# Call greet and show the result
-@show CppHello.greet("Hello World")
+@testset "greet" begin
+    # Call greet and show the result
+    @test CppHello.greet("Hello World") == "Hello World"
+end
