@@ -9,4 +9,4 @@ module CppHello
 end
 
 # Call greet and show the result
-@show CppHello.greet()
+@show CppHello.greet("Hello World")

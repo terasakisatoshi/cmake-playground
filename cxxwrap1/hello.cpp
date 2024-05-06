@@ -2,9 +2,9 @@
 
 #include "jlcxx/jlcxx.hpp"
 
-std::string greet()
+std::string greet(std::string msg)
 {
-   return "hello, world";
+   return msg;
 }
 
 JLCXX_MODULE define_julia_module(jlcxx::Module& mod)
