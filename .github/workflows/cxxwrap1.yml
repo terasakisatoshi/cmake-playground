@@ -53,4 +53,4 @@ jobs:
       - name: Build shared libraries
         run: bash build.sh
       - name: Run Tests
-        run: julia callcxx.jl
+        run: julia --project callcxx.jl
