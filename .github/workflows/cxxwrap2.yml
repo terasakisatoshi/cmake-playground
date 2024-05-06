@@ -7,6 +7,7 @@ on:
   pull_request:
     paths:
       - "cxxwrap2"
+      - ".github/workflows/cxxwrap2.yml"
   workflow_dispatch:
 
 defaults:
