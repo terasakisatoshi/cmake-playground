@@ -7,6 +7,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+    paths:
+      - "./hello"
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)

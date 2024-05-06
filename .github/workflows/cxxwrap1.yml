@@ -5,6 +5,8 @@ on:
       - main
     tags: ['*']
   pull_request:
+    paths:
+      - "./cxxwrap1/*"
   workflow_dispatch:
 
 defaults:
