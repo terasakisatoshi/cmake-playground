@@ -12,8 +12,8 @@ else
 fi
 
 # Get Julia installation paths
-JL=`julia -e 'joinpath(Sys.BINDIR, "..") |> abspath |> print'`
-PREFIX=`julia -e 'using CxxWrap; CxxWrap.prefix_path() |> print'`
+JL=`julia --project -e 'joinpath(Sys.BINDIR, "..") |> abspath |> print'`
+PREFIX=`julia --project -e 'using CxxWrap; CxxWrap.prefix_path() |> print'`
 
 # Build shared library with appropriate extension
 g++ -fPIC -shared -std=c++17 \
