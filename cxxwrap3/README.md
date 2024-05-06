@@ -1,8 +1,8 @@
 # Usage
 
 ```
-$ docker build -t cxxwrap2 .
-$ docker run --rm -it -v $PWD:/work -w /work cxxwrap2 bash -c 'bash build.sh && julia callcxx.jl'
+$ docker build -t cxxwrap3 .
+$ docker run --rm -it -v $PWD:/work -w /work cxxwrap3 bash -c 'bash build.sh && julia --project -e "using Pkg; Pkg.test()"'
 ```
 
 # Reference
