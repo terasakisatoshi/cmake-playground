@@ -6,7 +6,8 @@ on:
     tags: ['*']
   pull_request:
     paths:
-      - "./cxxwrap1/*"
+      - "cxxwrap1"
+      - ".github/workflows/cxxwrap1.yml"
   workflow_dispatch:
 
 defaults:
