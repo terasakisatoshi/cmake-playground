@@ -1,9 +1,13 @@
 module MyCxxWrap4
+
+using Reexport
+
 module CxxAffine
     import ..MyCxxWrap4
     using CxxWrap
     using Libdl
     @wrapmodule(() -> joinpath(pkgdir(MyCxxWrap4), "build/lib/libjl_affine.$(dlext)",), :define_julia_module_affine)
+
     function __init__()
         @initcxx
     end
@@ -19,13 +23,13 @@ module CxxFern
     end
 end
 
-using .CxxAffine
+@reexport using .CxxAffine: Affine
+export transform!
 
-Affine = CxxAffine.Affine
-transform = CxxAffine.transform
+function transform!(aff::Affine, refx::Ref{T}, refy::Ref{T}) where T<:AbstractFloat
+    CxxAffine.transform(aff, refx, refy)
+end
 
-using .CxxFern
-
-BarnsleyCategoricalDistribution = CxxFern.BarnsleyCategoricalDistribution
+@reexport using .CxxFern: BarnsleyCategoricalDistribution
 
 end # module MyCxxWrap4

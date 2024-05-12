@@ -1,4 +1,4 @@
-using MyCxxWrap4: Affine, BarnsleyCategoricalDistribution, transform
+using MyCxxWrap4: Affine, BarnsleyCategoricalDistribution, transform!
 using Plots
 
 function main()
@@ -21,7 +21,7 @@ function main()
     for i in 1:N
         c = rand(d)
         aff = transforms[begin+c]
-        transform(aff, x, y)
+        transform!(aff, x, y)
         xderef = x[] # dereference
         yderef = y[] # dereference
         push!(xs, xderef)
