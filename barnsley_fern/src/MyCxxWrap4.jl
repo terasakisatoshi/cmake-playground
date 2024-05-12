@@ -24,7 +24,14 @@ module CxxFern
 end
 
 @reexport using .CxxAffine: Affine
-export transform!
+export transform!, transform
+
+function transform(aff::Affine, x::T, y::T) where T<:AbstractFloat
+    refx = Ref(x)
+    refy = Ref(y)
+    CxxAffine.transform(aff, refx, refy)
+    return (refx[], refy[])
+end
 
 function transform!(aff::Affine, refx::Ref{T}, refy::Ref{T}) where T<:AbstractFloat
     CxxAffine.transform(aff, refx, refy)

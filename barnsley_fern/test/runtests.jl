@@ -1,6 +1,21 @@
 using Test
 
-using MyCxxWrap4: Affine, transform!, BarnsleyCategoricalDistribution
+using MyCxxWrap4: Affine, transform, transform!, BarnsleyCategoricalDistribution
+
+@testset "Affine/transform" begin
+    w11 = 1.0
+    w12 = 0.0
+    w21 = 0.0
+    w22 = 1.0
+    b1 = 1.
+    b2 = -1.
+
+    aff = Affine(w11, w12, w21, w22, b1 ,b2)
+
+    x = 1.
+    y = 1.
+    @test transform(aff, x ,y) == (2.0, 0.0)
+end
 
 @testset "Affine/transform!" begin
     w11 = 1.0
