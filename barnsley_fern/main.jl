@@ -9,7 +9,7 @@ function main()
     aff4 = Affine(-0.15, 0.28, 0.26, 0.24, 0.0, 0.44);
 
     transforms = (aff1, aff2, aff3, aff4)
-    d = BarnsleyCategoricalDistribution()
+    d = BarnsleyCategoricalDistribution(42)
     N = 100000
     xs = Float64[]
     ys = Float64[]
