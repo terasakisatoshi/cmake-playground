@@ -1,6 +1,6 @@
 using Test
 
-using MyCxxWrap4: Affine, transform!
+using MyCxxWrap4: Affine, transform!, BarnsleyCategoricalDistribution
 
 @testset "Affine/transform!" begin
     w11 = 1.0
@@ -16,4 +16,9 @@ using MyCxxWrap4: Affine, transform!
     y = Ref{Float64}(1.)
     transform!(aff, x ,y)
     @test (x[], y[]) == (2.0, 0.0)
+end
+
+@testset "BarnsleyCategoricalDistribution" begin
+    d = BarnsleyCategoricalDistribution(42);
+    @test [rand(d) for _ in 1:20] == Int32[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 3, 1, 1, 0, 1, 1]
 end
