@@ -23,10 +23,14 @@ function main()
         aff = transforms[begin+c]
         transform(aff, x, y)
         xderef = x[] # dereference
-        ydefer = y[] # dereference
+        yderef = y[] # dereference
         push!(xs, xderef)
         push!(ys, yderef)
     end
-    @show ys
     scatter(xs, ys)
+end
+
+if abspath(PROGRAM_FILE) == @__FILE__
+    p = main()
+    savefig(p, "out.png")
 end
