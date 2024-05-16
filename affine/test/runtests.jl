@@ -3,8 +3,8 @@ using Test
 using MyCxxWrap5
 
 @testset "Affine W, b" begin
-    W = MyCxxWrap5.EigenMatrix{Float64,2,2}()
-    b = MyCxxWrap5.EigenMatrix{Float64,2,1}()
+    W = EigenMatrix{Float64,2,2}()
+    b = EigenMatrix{Float64,2,1}()
 
     jlW = rand(2, 2)
     for ci in CartesianIndices(jlW)
@@ -16,9 +16,9 @@ using MyCxxWrap5
         b[i, 1] = jlb[i]
     end
 
-    aff = MyCxxWrap5.Affine(W, b)
-    affW = MyCxxWrap5.getW(aff)
-    affb = MyCxxWrap5.getb(aff)
+    aff = Affine(W, b)
+    affW = getW(aff)
+    affb = getb(aff)
     for ci in CartesianIndices(jlW)
         @test affW[ci.I...] == jlW[ci]
     end

@@ -1,5 +1,12 @@
 module MyCxxWrap5
 
+using Reexport
+
+
+module MyAffine
+
+using ..MyCxxWrap5
+
 using CxxWrap
 using Libdl
 
@@ -9,4 +16,8 @@ function __init__()
     @initcxx
 end
 
-end # module MyAffine
+end # MyAffine
+
+@reexport using .MyAffine: Affine, getW, getb, EigenMatrix
+
+end # module MyCxxWrap5
