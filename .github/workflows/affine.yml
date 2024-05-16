@@ -46,6 +46,8 @@ jobs:
       - uses: julia-actions/cache@v1
       - name: Instantiate
         run: julia --project -e 'using Pkg; Pkg.instantiate()'
+      - name: Install Eigen
+        run: sudo apt-get install libeigen3-dev
       - name: Build shared libraries
         run: bash build.sh
       - name: Run Julia Tests
