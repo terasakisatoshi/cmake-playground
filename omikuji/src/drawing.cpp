@@ -7,7 +7,7 @@ std::string draw(){
 	std::mt19937 rng(seed_gen());
 	
 	std::vector<std::string> slips = {"Very good luck", "Good luck", "Bad luck", "Extremely bad luck"};
-	std::uniform_int_distribution<> dist_n(1, slips.size());
+	std::uniform_int_distribution<> dist_n(0, slips.size()-1);
 	int n = dist_n(rng);
 	return slips[n];
 }
