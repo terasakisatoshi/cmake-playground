@@ -5,4 +5,8 @@ using MyCxxWrap4
 	x = rand(10)
 	v= MyCxxWrap4.twice(x)
 	@test 2x == v
+
+	x = rand(10)
+	v= MyCxxWrap4.twice(x)
+	@test 2x == v
 end
