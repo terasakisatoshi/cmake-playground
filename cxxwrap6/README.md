@@ -1,10 +1,12 @@
 # Usage
 
 ```sh
-$ docker build -t cxxwrap4 .
-$ docker run --rm -it -v $PWD:/work -w /work cxxwrap4 bash -c 'julia --project -e "using Pkg; Pkg.build(); Pkg.test()"'
+$ julia --project -e "using Pkg; Pkg.build(); Pkg.test()"'
 ```
 
-# Reference
+# References
 
-[my gist](https://gist.github.com/terasakisatoshi/b6a7121cd570f6739992345095b07d62)
+- [my gist](https://gist.github.com/terasakisatoshi/b6a7121cd570f6739992345095b07d62)
+- [JuliaInterop/CxxWrap.jl](https://github.com/JuliaInterop/CxxWrap.jl)
+- [JuliaInterop/libcxxwrap-julia](https://github.com/JuliaInterop/libcxxwrap-julia/tree/main)
+- [libcxxwrap-julia/examples/containers.cpp](https://github.com/JuliaInterop/libcxxwrap-julia/blob/main/examples/containers.cpp)
