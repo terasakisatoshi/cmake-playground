@@ -31,10 +31,10 @@ auto print_address(jlcxx::ArrayRef<double, 2> jlx) {
 
   std::cout << jlx.data() << std::endl; // print memory address of x
   static Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> y;
-  auto x = Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>(&jlx[0], size0, size1);
+  auto x = Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>(jlx.data(), size0, size1);
   y = 2 * x;
 
- std::cout << y.data() << std::endl; // print memory address of y
+  std::cout << y.data() << std::endl; // print memory address of y
   return jlcxx::make_julia_array(y.data(), size0, size1);
 }
 
@@ -42,7 +42,7 @@ auto twice(jlcxx::ArrayRef<double, 2> jlx) {
   size_t size0 = jl_array_dim(jlx.m_array, 0);
   size_t size1 = jl_array_dim(jlx.m_array, 1);
   static Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> y;
-  auto x = Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>(&jlx[0], size0, size1);
+  auto x = Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>(jlx.data(), size0, size1);
   y = 2 * x;
   return jlcxx::make_julia_array(y.data(), size0, size1);
 }
@@ -57,7 +57,7 @@ auto triple(jlcxx::ArrayRef<double, 2> jlx) {
   size_t size0 = jl_array_dim(jlx.m_array, 0);
   size_t size1 = jl_array_dim(jlx.m_array, 1);
   static Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> y;
-  auto x = Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>(&jlx[0], size0, size1);
+  auto x = Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>(jlx.data(), size0, size1);
   // Do something
   y = 2 * x + x;
   return jlcxx::make_julia_array(y.data(), size0, size1);
@@ -66,7 +66,7 @@ auto triple(jlcxx::ArrayRef<double, 2> jlx) {
 auto inplace_triple(jlcxx::ArrayRef<double, 2> jlx) {
   size_t size0 = jl_array_dim(jlx.m_array, 0);
   size_t size1 = jl_array_dim(jlx.m_array, 1);
-  auto x = Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>(&jlx[0], size0, size1);
+  auto x = Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>(jlx.data(), size0, size1);
   x = 3 * x;
   for(size_t c = 0; c < size1; c++){
     for(size_t r = 0; r < size0; r++){
