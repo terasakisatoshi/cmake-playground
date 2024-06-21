@@ -1,6 +1,6 @@
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.10.3"
+julia_version = "1.10.4"
 manifest_format = "2.0"
 project_hash = "3cef41461bc070f5890a35a6516e3e4c0caa014a"
 
@@ -12,9 +12,9 @@ uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 
 [[deps.CxxWrap]]
 deps = ["Libdl", "MacroTools", "libcxxwrap_julia_jll"]
-git-tree-sha1 = "ba1a559afd562447710513525030d6ad83e5868a"
+git-tree-sha1 = "9208ab6d13777dace5981b451171891faf59e6a2"
 uuid = "1f15a43c-97ca-5a2a-ae31-89f07a497df4"
-version = "0.15.1"
+version = "0.16.0"
 
 [[deps.Dates]]
 deps = ["Printf"]
@@ -81,6 +81,6 @@ uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
 
 [[deps.libcxxwrap_julia_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
-git-tree-sha1 = "0f10092db771939e29fd13a67967f5c63212fdfe"
+git-tree-sha1 = "f9797910cf52fc36aba4660dbb8d99eaa92c0ca9"
 uuid = "3eaa8342-bff7-56a5-9981-c04077f7cee7"
-version = "0.12.3+0"
+version = "0.13.2+0"

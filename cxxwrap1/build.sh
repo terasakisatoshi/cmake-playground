@@ -12,6 +12,8 @@ else
 fi
 
 # Get Julia installation paths
+rm Manifest.toml
+julia --project -e 'using Pkg; Pkg.instantiate()'
 JL=`julia --project -e 'joinpath(Sys.BINDIR, "..") |> abspath |> print'`
 PREFIX=`julia --project -e 'using CxxWrap; CxxWrap.prefix_path() |> print'`
 
