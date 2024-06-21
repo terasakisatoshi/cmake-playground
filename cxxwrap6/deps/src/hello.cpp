@@ -30,19 +30,37 @@ auto print_address(jlcxx::ArrayRef<double, 2> jlx) {
   size_t size1 = jl_array_dim(jlx.m_array, 1);
 
   std::cout << jlx.data() << std::endl; // print memory address of x
-  static Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> y;
-  auto x = Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>(jlx.data(), size0, size1);
+  static Eigen::MatrixXd y;
+  auto x = Eigen::Map<Eigen::MatrixXd>(jlx.data(), size0, size1);
   y = 2 * x;
 
   std::cout << y.data() << std::endl; // print memory address of y
   return jlcxx::make_julia_array(y.data(), size0, size1);
 }
 
+auto twice_as_stdvec(jlcxx::ArrayRef<double, 2> jlx) {
+  size_t size0 = jl_array_dim(jlx.m_array, 0);
+  size_t size1 = jl_array_dim(jlx.m_array, 1);
+  static Eigen::MatrixXd y;
+  auto x = Eigen::Map<Eigen::MatrixXd>(jlx.data(), size0, size1);
+  y = 2 * x;
+  std::vector<double> std_y(y.data(), y.data() + y.size());
+  return std_y;
+}
+
+std::vector<double> create_stdvec(int N){
+  std::vector<double> v;
+  for (size_t i = 0; i < N; i++){
+    v.push_back(i);
+  }
+  return v;
+}
+
 auto twice(jlcxx::ArrayRef<double, 2> jlx) {
   size_t size0 = jl_array_dim(jlx.m_array, 0);
   size_t size1 = jl_array_dim(jlx.m_array, 1);
-  static Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> y;
-  auto x = Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>(jlx.data(), size0, size1);
+  static Eigen::MatrixXd y;
+  auto x = Eigen::Map<Eigen::MatrixXd>(jlx.data(), size0, size1);
   y = 2 * x;
   return jlcxx::make_julia_array(y.data(), size0, size1);
 }
@@ -56,8 +74,8 @@ void inplace_twice(jlcxx::ArrayRef<double, 2> jlx) {
 auto triple(jlcxx::ArrayRef<double, 2> jlx) {
   size_t size0 = jl_array_dim(jlx.m_array, 0);
   size_t size1 = jl_array_dim(jlx.m_array, 1);
-  static Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> y;
-  auto x = Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>(jlx.data(), size0, size1);
+  static Eigen::MatrixXd y;
+  auto x = Eigen::Map<Eigen::MatrixXd>(jlx.data(), size0, size1);
   // Do something
   y = 2 * x + x;
   return jlcxx::make_julia_array(y.data(), size0, size1);
@@ -66,7 +84,7 @@ auto triple(jlcxx::ArrayRef<double, 2> jlx) {
 auto inplace_triple(jlcxx::ArrayRef<double, 2> jlx) {
   size_t size0 = jl_array_dim(jlx.m_array, 0);
   size_t size1 = jl_array_dim(jlx.m_array, 1);
-  auto x = Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>>(jlx.data(), size0, size1);
+  auto x = Eigen::Map<Eigen::MatrixXd>(jlx.data(), size0, size1);
   x = 3 * x;
   for(size_t c = 0; c < size1; c++){
     for(size_t r = 0; r < size0; r++){
@@ -79,6 +97,8 @@ auto inplace_triple(jlcxx::ArrayRef<double, 2> jlx) {
 JLCXX_MODULE define_julia_module(jlcxx::Module &mod) {
   mod.method("f", &f);
   mod.method("print_address", &print_address);
+  mod.method("twice_as_stdvec", &twice_as_stdvec);
+  mod.method("create_stdvec", &create_stdvec);
   mod.method("twice", &twice);
   mod.method("twice!", &inplace_twice);
 
