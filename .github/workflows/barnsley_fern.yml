@@ -6,7 +6,7 @@ on:
     tags: ['*']
   pull_request:
     paths:
-      - "barnsley_fern/*"
+      - "barnsley_fern/**"
       - ".github/workflows/barnsley_fern.yml"
   workflow_dispatch:
 

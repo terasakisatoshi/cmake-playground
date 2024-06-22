@@ -6,7 +6,7 @@ on:
     tags: ['*']
   pull_request:
     paths:
-      - "affine/*"
+      - "affine/**"
       - ".github/workflows/affine.yml"
   workflow_dispatch:
 
@@ -47,4 +47,8 @@ jobs:
       - name: Install Eigen
         run: sudo apt-get install libeigen3-dev
       - uses: julia-actions/julia-buildpkg@v1
+        with:
+          project: affine
       - uses: julia-actions/julia-runtest@v1
+        with:
+          project: affine
