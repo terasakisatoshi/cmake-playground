@@ -44,13 +44,7 @@ jobs:
           version: ${{ matrix.version }}
           arch: ${{ matrix.arch }}
       - uses: julia-actions/cache@v1
-      - name: Install CxxWrap
-        run: julia -e 'using Pkg; Pkg.add("CxxWrap")'
       - name: Install Eigen
         run: sudo apt-get install libeigen3-dev
-      - name: Build shared libraries
-        run: bash build.sh
-      - name: Run Julia Tests
-        run: julia --project -e 'using Pkg; Pkg.test()'
-      - name: Run CXX Tests
-        run: make test
+      - uses: julia-actions/julia-buildpkg@v1
+      - uses: julia-actions/julia-runtest@v1

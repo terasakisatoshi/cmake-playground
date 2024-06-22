@@ -1,0 +1,14 @@
+CXXWRAP_PREFIX=`julia --project -e 'using CxxWrap; CxxWrap.prefix_path() |> print'`
+
+.PHONY: all run build test clean
+all: build
+
+build: *.cpp
+	cmake -S . -B ./build -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$CXXWRAP_PREFIX
+	cmake --build ./build --config Release -j `nproc`
+
+test: build
+	ctest --test-dir ./build
+
+clean:
+	$(RM) -r build
