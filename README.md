@@ -1,6 +1,6 @@
 # cmake-playground
 
-My CMake/C++ playground
+My CMake/C++/CxxWrap playground
 
 ## hello
 
@@ -24,7 +24,11 @@ My CMake/C++ playground
 
 ## affine (cxxwrap5)
 
-- - This example shows the wrapping of `Eigen::Matrix2d` and `Eigen::Vector2d`. Of course there is room for improvement. For those interested in more complicated examples using Eigen, check out [barche/cxxwrap-juliacon2020](https://github.com/barche/cxxwrap-juliacon2020/tree/master/eigen/sample-solution/jleigen)
+- This example shows the wrapping of `Eigen::Matrix2d` and `Eigen::Vector2d`. Of course there is room for improvement. For those interested in more complicated examples using Eigen, check out [barche/cxxwrap-juliacon2020](https://github.com/barche/cxxwrap-juliacon2020/tree/master/eigen/sample-solution/jleigen)
+
+## cxxwrap6
+
+- This example shows how to pass/get arrays to/from C++ functions from Julia. Our example genenalizes [Working with arrays] section in CxxWrap.jl
 
 ## barnsley_fern
 
