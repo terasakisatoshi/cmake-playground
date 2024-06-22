@@ -10,7 +10,7 @@ using ..MyCxxWrap5
 using CxxWrap
 using Libdl
 
-@wrapmodule(() -> joinpath(pkgdir(@__MODULE__), "../deps/build/lib/libjl_affine.$(dlext)"))
+@wrapmodule(() -> joinpath(pkgdir(@__MODULE__), "deps/build/lib/libjl_affine.$(dlext)"))
 
 function __init__()
     @initcxx
